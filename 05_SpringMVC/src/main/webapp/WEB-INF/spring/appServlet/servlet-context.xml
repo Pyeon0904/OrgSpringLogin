@@ -23,6 +23,25 @@
 	
 	<context:component-scan base-package="com.kh.mvc" />
 	
+	<!--
+	<annotation-driven />, <context:component-scan base-package="com.kh.mvc" />을 사용하지 않을 경우!!
+	아래와 같이 HandlerMapping과 Controller를 명시적으로 bean으로 등록해야한다.
 	
+	
+	각 요청을 수행할 Controller들의 클래스를 빈으로 등록하고	
+	<beans:bean id="loginController" class="com.kh.spring.member.controller.LoginController"/>
+	<beans:bean id="logoutController" class="com.kh.spring.member.controller.LogoutController"/>
+	
+	
+	HandlerMapping에 각각의 Controller들을 매핑해야한다.	
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<beans:property name="mappings">
+			<beans:props>
+				<beans:prop key="login.me">loginController</beans:prop>
+				<beans:prop key="logout.me">logoutController</beans:prop>						
+			</beans:props>
+		</beans:property>
+	</beans:bean> 
+	 -->
 	
 </beans:beans>
