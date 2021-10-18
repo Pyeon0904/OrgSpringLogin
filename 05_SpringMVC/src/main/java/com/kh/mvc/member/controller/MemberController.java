@@ -152,11 +152,12 @@ public class MemberController {
 	public String login(@RequestParam("userId")String userId, 
 						@RequestParam(value = "userPwd") String userPwd) {
 		
-		//log.info("{}, {}", userId, userPwd);
 		
 		// '서비스 객체' 하나 만들고 login 시켜달라고 요청! -> Member loginMember로 받아!
 		Member loginMember = service.login(userId, userPwd);
 		// login에서 create method 해주기! -> MemberService에 생성됨!
+		
+		log.info("{}, {}", userId, userPwd);
 		
 		System.out.println(loginMember);
 		
