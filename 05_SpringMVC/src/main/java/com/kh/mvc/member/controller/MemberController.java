@@ -3,12 +3,16 @@ package com.kh.mvc.member.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.mvc.member.model.service.MemberService;
+import com.kh.mvc.member.model.service.MemberServiceImpl;
 import com.kh.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -107,6 +111,7 @@ public class MemberController {
 	 - '@ModelAttribute' 생략해도 사용 가능! -> 가독성을 위해 명시해주는 게 좋다!
 	 
 	 */
+	/*
 	@RequestMapping(value = "/login", method = {RequestMethod.POST})
 	public String login(@ModelAttribute Member member) {
 		
@@ -114,7 +119,51 @@ public class MemberController {
 		
 		return "home";
 	}
-
+	*/
+	
+	/*4. @PathVariable 패스 파라미터로 요청 받기 */
+	/* 
+	 - URL Path상에 있는 특정 값을 가져오기 위해 사용하는 방법 
+	 - @PathVariable 어노테이션을 사용한다.
+	 - Restful API 사용할 때, URL상으로 어떤 값을 가져오는 경우 많이 사용한다!
+	 - path 상에 {}로 묶는다면, 그 파라미터를 값으로 받겠다는 것이다!
+	 - path 상의 {}안의 변수명과 자료형 다음 변수명이 동일하다면 boardId를 Id로 줄여쓰는 것 가능!
+	 - @어노테이션 자체를 생략하는 것은 불가능!(RequestParam과 구분이 안됨!) -> 변수명 줄이기만 가능!
+	 (@PathVariable 어노테이션의 괄호 부분은 생략이 되지만 어노테이션 자체는 생략이 되지 않는다)
+	 */
+	/*
+	@RequestMapping("board/{id}")
+	public String getBoard(@PathVariable("id") int boardId) {
+//#2	public String getBoard(@PathVariable int Id) {
+			
+		
+		//log.info("Board ID : {}", boardId);
+		//#2 log.info("Board ID : {}", Id);
+		
+		return "home";
+	}
+	*/
+	
+	@Autowired
+	private MemberService service;
+	
+	// 로그인 처리
+	@RequestMapping(value = "/login", method = {RequestMethod.POST})
+	public String login(@RequestParam("userId")String userId, 
+						@RequestParam(value = "userPwd") String userPwd) {
+		
+		//log.info("{}, {}", userId, userPwd);
+		
+		// '서비스 객체' 하나 만들고 login 시켜달라고 요청! -> Member loginMember로 받아!
+		Member loginMember = service.login(userId, userPwd);
+		// login에서 create method 해주기! -> MemberService에 생성됨!
+		
+		System.out.println(loginMember);
+		
+		return "home";
+	}
+	
+	
 	
 	
 	

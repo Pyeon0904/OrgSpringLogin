@@ -17,7 +17,9 @@
 	아이디 : <input type="text" name="userId" required/><br>
 	비밀번호 : <input type="password" name="userPwd" required>
 	
-	<input type="submit" value="로그인"/>
+	<input type="submit" value="로그인"/><br><br>
+	
+	<input type="button" onclick="${path}/member/login" value="로그인창"/>
 </form>
 
 </body>
