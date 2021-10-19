@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- root-context에 import 해줄 Bean 설정 해주는 곳! -->
+	
+	<!-- 
+		dataSource : DB에 접근하기 위한 표준 인터페이스 
+		- connection을 관리해줌
+		(mybatis-config.xml의 dataSource 부분을 Bean으로 생성한 것!)
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@localhost:1521:orcl"
+		p:username="WEB"
+		p:password="WEB"
+	/>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:configLocation="classpath:mybatis-config.xml"
+		p:mapperLocations="classpath:mappers/**/*.xml"
+		p:dataSource-ref="dataSource"
+		p:typeAliasesPackage="com.kh.mvc.*.model.vo"
+	/>
+</beans>

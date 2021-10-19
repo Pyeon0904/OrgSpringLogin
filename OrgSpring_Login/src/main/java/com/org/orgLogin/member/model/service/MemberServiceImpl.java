@@ -14,9 +14,9 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao dao;
 	
 	@Override
-	public Member login(String Id, String Pwd) {
+	public Member login(String id, String pwd) {
 		
-		Member member = dao.findMemberById(Id);
+		Member member = dao.findMemberById(id);
 		
 		return member;
 	}

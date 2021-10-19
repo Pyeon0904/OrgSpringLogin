@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.org.orgLogin">
+	<logger name="com.kh.mvc">
 		<level value="info" />
 	</logger>
 	

@@ -1,14 +1,36 @@
 package com.kh.mvc.member.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Member {
-	private String userId;
+	private int no;
 	
-	private String userPwd;
+	private String id;
+	
+	private String password;
+	
+	private String role;
+	
+	private String name;
+	
+	private String phone;
+	
+	private String email;
+	
+	private String address;
+	
+	private String hobby;
+	
+	private String status;
+	
+	private Date enrollDate;
+	
+	private Date modifyDate;
 }

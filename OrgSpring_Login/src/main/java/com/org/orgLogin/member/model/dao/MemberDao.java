@@ -9,7 +9,7 @@ public class MemberDao {
 
 	public Member findMemberById(String userId) {
 		
-		return null;
+		return new Member();
 	}
 
 }
