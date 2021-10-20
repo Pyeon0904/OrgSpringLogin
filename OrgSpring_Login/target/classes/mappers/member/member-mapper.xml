@@ -8,9 +8,8 @@
  <!-- 
   	namespace 속성
   		외부에서 이 mapper에 접근할 수 있는 별칭	
- 	<mapper namespace="memberMapper">
   -->
-  <mapper namespace="com.kh.mvc.member.model.mapper.MemberMapper">
+ <mapper namespace="memberMapper">
  	<!-- 
  		중복되는 쿼리 내용을 재사용하기 위한 SQL 조각
  		사용하려는 태그보다 항상 위에 있어야한다.
@@ -173,4 +172,4 @@
  	<delete id="deleteMember" parameterType="_int">
  		DELETE FROM MEMBER WHERE NO=#{memberNo}
  	</delete>
-</mapper>
+ </mapper>

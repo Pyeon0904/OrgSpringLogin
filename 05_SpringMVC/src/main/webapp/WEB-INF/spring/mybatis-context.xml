@@ -3,27 +3,46 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- root-context에 import 해줄 Bean 설정 해주는 곳! -->
 	
 	<!-- 
 		dataSource : DB에 접근하기 위한 표준 인터페이스 
-		- connection을 관리해줌
+		- 실제 DB에 연결하는 connection 객체를 관리해줌
 		(mybatis-config.xml의 dataSource 부분을 Bean으로 생성한 것!)
 	-->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close"
+		p:driverClassName="${db.driver}"
+		p:url="${db.url}"
+		p:username="${db.username}"
+		p:password="${db.password}"
+	/>	
+	<!-- 
+	<context:property-placeholder location="classpath:driver.properties" />
+	지정 후 p: 부분 위와같이 변경!
+		(기존구문) 
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@localhost:1521:orcl"
 		p:username="WEB"
-		p:password="WEB"
-	/>
+		p:password="WEB" -->		 
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:configLocation="classpath:mybatis-config.xml"
 		p:mapperLocations="classpath:mappers/**/*.xml"
 		p:dataSource-ref="dataSource"
 		p:typeAliasesPackage="com.kh.mvc.*.model.vo"
+	/>
+	
+	<!-- sqlSession을 만들기 위한 SqlSessionTemplate -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+		c:sqlSessionFactory-ref="sqlSessionFactory"
+	/>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="com.kh.mvc.*.model.mapper"
 	/>
 </beans>

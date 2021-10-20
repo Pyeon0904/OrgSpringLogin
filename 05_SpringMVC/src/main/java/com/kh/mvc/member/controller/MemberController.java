@@ -2,11 +2,14 @@ package com.kh.mvc.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -148,6 +151,7 @@ public class MemberController {
 	private MemberService service;
 	
 	// 로그인 처리
+	/*
 	@RequestMapping(value = "/login", method = {RequestMethod.POST})
 	public String login(@RequestParam("userId")String userId, 
 						@RequestParam("userPwd") String userPwd) {
@@ -163,6 +167,46 @@ public class MemberController {
 		
 		return "home";
 	}
+	*/
 	
+//	[ 로그인 처리(구현 시작) ]
+//	1. HttpSession과 Model 객체 사용
+//	- Model이라는 객체는 controller에서 데이터를 뷰로 전달하고자 할 때 사용하는 객체이다.
+//		(처리되는 비즈니스 모델을 view에 전달해줄 때, Model 객체에 담아서 Dispatcher Servlet에 전달해 View resolver를 경유해 view에 Model 객체를 전달해준다.)
+//		(전달하고자 하는 데이터를 맵형태(key, value)로 담을 수 있다.)
+//		데이터를 담을 때는 setAttribute()가 아닌 addAttribute()를 사용한다.
+//	- Model 객체의 scope는 request이다.
+	@RequestMapping(value = "/login", method = {RequestMethod.POST})
+	public String login(HttpSession session, Model model, 
+			@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd){
+		
+		log.info("{}, {}", userId, userPwd);
+		
+		Member loginMember = service.login(userId, userPwd);
+
+		// [로그인 controller 로직 구현 1]
+		if(loginMember != null) { // 로그인 O
+			session.setAttribute("loginMember", loginMember);
+			
+			return "redirect:/";
+			
+			/*
+			 return "home";
+			 	- "forwarding 방식"으로 여기서 리턴한 view 명칭이 viewResolver에 의해
+			 	  prefix, subfix가 붙어 "WEB-INF/views/home.jsp"로 요청을 넘긴다.
+			 	  
+			 
+			 return "redirect:/";
+			 	- "redirect 방식"으로 여기서 리턴한 경로로 브라우저에서 다시 요청하도록 반환한다.	 
+				(즉, 로그인이 성공했을 때, redirect 방식을 통해 다시 home 경로로 돌아오도록 요청!)
+			*/
+		}
+		else { // 로그인 X
+			model.addAttribute("msg", "아이디나 패스워드가 일치하지 않습니다.");
+			model.addAttribute("location", "/");
+			
+			return "common/msg"; // prefix가 views 까지 때문에!
+		}
+	}	
 }
 

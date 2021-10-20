@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +84,12 @@
             float: left;
             font-size: 5px;
         }
-
+		
+		/* 로그인 후, 로그아웃 폼 */
+		.logoutForm{
+			text-align:right;
+		}
+		
         a { 
             text-decoration:none;
         } 
@@ -90,20 +98,24 @@
 
 </head>
 <body>
+
 	<div class="box">
         <h2 class="loginTitle">로그인</h2>
         <div class="conbox">
+        <!-- 로그인 X -->
+        <c:if test="${ loginMember == null }">
+		<form action="login" method="POST">
         <table class="loginTable">
             <br><br>
             <tr>
-                <td><input type="text" placeholder="아이디"></td>
+                <td><input type="text" name="userId" placeholder="아이디" required></td>
             </tr>
             <tr>
                 <td><input type="button" class="btnSearch" value="아이디 찾기"></td>
                 <td></td>
             </tr>
             <tr>
-                <td><input type="text" placeholder="패스워드"></td>
+                <td><input type="password" name="userPwd" placeholder="패스워드" required></td>
             </tr>
             <tr>
                 <td><input type="button" class="btnSearch" value="패스워드 찾기"></td>
@@ -114,7 +126,7 @@
                 </td>
             </tr>
             <tr>
-                <td><input type="button" class="btnLogin" id="" value="로그인"></td>
+                <td><input type="submit" class="btnLogin" value="로그인"></td>
             </tr>
             <tr>
                 <td>
@@ -131,7 +143,16 @@
         <a href="#">
             <i class="fab fa-instagram"></i>
         </a>
-        
+        </form>
+	</c:if>
+	
+	<!-- 로그인 O -->
+	<c:if test="${ loginMember != null }">
+		<div class="logoutForm">
+		${ loginMember.name }님, 안녕하세요.
+		<button>로그아웃</button>
+		</div>	
+	</c:if>        
     </div>
     </div>
 
