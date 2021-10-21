@@ -62,6 +62,22 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+//	[회원가입 메소드 로직1]
+	@Override
+	public int save(Member member) {
+		int result = 0;
+		
+		if(member.getNo() != 0) { // DB에 존재 O 데이터 --> "update!"
+ 			
+		}
+		else { // DB에 존재 X 데이터(이제 첫 기록) --> "Insert!"
+			result = mapper.insertMember(member);
+			// result로 mapper 중 insertMember를 써서 member를 넘겨줘!
+		}
+		
+		return result;
+	}
+	
 	
 	
 	

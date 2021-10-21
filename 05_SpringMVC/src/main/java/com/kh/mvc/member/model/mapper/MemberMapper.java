@@ -33,6 +33,8 @@ public class MemberDao {
 @Mapper
 public interface MemberMapper {
 	public Member selectMember(@Param("id") String id);
+
+	public int insertMember(Member member);
 	
 	
 	

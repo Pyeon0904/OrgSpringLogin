@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<c:set var="path" value="${ pageContext.request.contextPath }"/>
+
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +20,7 @@
 
     <style>
         html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video 
-        { 
-            font-family: 'NanumGothic';
-        }
+        { font-family: 'NanumGothic'; }
 
         /* 전체 틀 ------------------------------------------------- */
         .box{ 
@@ -26,7 +28,7 @@
             width:100%;
             height:300px; 
             margin-top:100px;
-            margin-bottom:300px;
+            margin-bottom:90px;
         }
 
         .conbox{
@@ -102,60 +104,60 @@
 	<div class="box">
         <h2 class="loginTitle">로그인</h2>
         <div class="conbox">
-        <!-- 로그인 X -->
-        <c:if test="${ loginMember == null }">
-		<form action="login" method="POST">
-        <table class="loginTable">
-            <br><br>
-            <tr>
-                <td><input type="text" name="userId" placeholder="아이디" required></td>
-            </tr>
-            <tr>
-                <td><input type="button" class="btnSearch" value="아이디 찾기"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><input type="password" name="userPwd" placeholder="패스워드" required></td>
-            </tr>
-            <tr>
-                <td><input type="button" class="btnSearch" value="패스워드 찾기"></td>
-            </tr>
-            <tr>
-                <td>
-                    <label><input type="checkbox" name="saveId" class="saveId" ${ cookie.saveId.value != null ? "checked" : ""}/>아이디 저장</label>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="submit" class="btnLogin" value="로그인"></td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="../ORG_Login/EnrollMain.html">
-                        <input type="button" class="btnEnroll" value="회원가입">
-                    </a>
-                </td>
-            </tr>
-        </table>
-
-        <a href="#">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#">
-            <i class="fab fa-instagram"></i>
-        </a>
-        </form>
-	</c:if>
+	        <!-- 로그인 X -->
+	        <c:if test="${ loginMember == null }">
+			<form action="login" method="POST">
+	        <table class="loginTable" align="center">
+	            <br><br>
+	            <tr>
+	                <td><input type="text" name="userId" placeholder="아이디" required></td>
+	            </tr>
+	            <tr>
+	                <td><input type="button" class="btnSearch" value="아이디 찾기"></td>
+	                <td></td>
+	            </tr>
+	            <tr>
+	                <td><input type="password" name="userPwd" placeholder="패스워드" required></td>
+	            </tr>
+	            <tr>
+	                <td><input type="button" class="btnSearch" value="패스워드 찾기"></td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    <label><input type="checkbox" name="saveId" class="saveId" ${ cookie.saveId.value != null ? "checked" : ""}/>아이디 저장</label>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td><input type="submit" class="btnLogin" value="로그인"></td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    <input type="button" onclick="location.href='${path}/member/enroll'" class="btnEnroll" value="회원가입">
+	                </td>
+	            </tr>
+	        </table>
 	
-	<!-- 로그인 O -->
-	<c:if test="${ loginMember != null }">
-		<div class="logoutForm">
-		${ loginMember.name }님, 안녕하세요.
-		<button>로그아웃</button>
-		</div>	
-	</c:if>        
-    </div>
-    </div>
+	        <a href="#">
+	            <i class="fab fa-twitter"></i>
+	        </a>
+	        <a href="#">
+	            <i class="fab fa-instagram"></i>
+	        </a>
+	        </form>
+		</c:if>
+		
+		<!-- 로그인 O -->
+		<c:if test="${ loginMember != null }">
+			<div class="logoutForm">
+			${ loginMember.name }님, 안녕하세요.
+			<button onclick="location.replace('${path}/logout')">로그아웃</button>
+			</div>	
+		</c:if>
+		       
+	    </div>
+	</div>
 
 
 </body>
 </html>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>

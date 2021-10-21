@@ -7,12 +7,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mvc.member.model.service.MemberService;
 import com.kh.mvc.member.model.service.MemberServiceImpl;
@@ -22,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@SessionAttributes("loginMember")
 public class MemberController {
 
 	
@@ -87,7 +92,7 @@ public class MemberController {
 		
 		//log.info("{}, {}", userId, userPwd);
 		return "home";
-	}
+	}		
 	*/
 	
 	/* 2-3. @RequestParam 어노테이션 방식(실제 존재하지 않는 parameter(addr)를 받으려고 할때? -> 에러!(필수로 넘어와야함!)) */
@@ -169,44 +174,166 @@ public class MemberController {
 	}
 	*/
 	
-//	[ 로그인 처리(구현 시작) ]
+//	[ 로그인 구현 1 ]
 //	1. HttpSession과 Model 객체 사용
 //	- Model이라는 객체는 controller에서 데이터를 뷰로 전달하고자 할 때 사용하는 객체이다.
 //		(처리되는 비즈니스 모델을 view에 전달해줄 때, Model 객체에 담아서 Dispatcher Servlet에 전달해 View resolver를 경유해 view에 Model 객체를 전달해준다.)
 //		(전달하고자 하는 데이터를 맵형태(key, value)로 담을 수 있다.)
 //		데이터를 담을 때는 setAttribute()가 아닌 addAttribute()를 사용한다.
 //	- Model 객체의 scope는 request이다.
-	@RequestMapping(value = "/login", method = {RequestMethod.POST})
+	@GetMapping("/member/login")
+	public String loginView() {
+		
+		log.info("로그인 페이지 요청");
+		
+		return "/member/login";
+	}
+	
+	@RequestMapping(value = "/member/login", method = {RequestMethod.POST})
 	public String login(HttpSession session, Model model, 
 			@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd){
 		
 		log.info("{}, {}", userId, userPwd);
 		
 		Member loginMember = service.login(userId, userPwd);
+		// Id, Pwd 받아서 로그인된 멤버가 있다면 return 시켜주고 없다면 null을 리턴!
 
 		// [로그인 controller 로직 구현 1]
 		if(loginMember != null) { // 로그인 O
 			session.setAttribute("loginMember", loginMember);
 			
-			return "redirect:/";
+			return "/member/login";
 			
-			/*
-			 return "home";
-			 	- "forwarding 방식"으로 여기서 리턴한 view 명칭이 viewResolver에 의해
-			 	  prefix, subfix가 붙어 "WEB-INF/views/home.jsp"로 요청을 넘긴다.
-			 	  
-			 
-			 return "redirect:/";
-			 	- "redirect 방식"으로 여기서 리턴한 경로로 브라우저에서 다시 요청하도록 반환한다.	 
-				(즉, 로그인이 성공했을 때, redirect 방식을 통해 다시 home 경로로 돌아오도록 요청!)
-			*/
+			
+//			 return "home";
+//			 	- "forwarding 방식"으로 여기서 리턴한 view 명칭이 viewResolver에 의해
+//			 	  prefix, subfix가 붙어 "WEB-INF/views/home.jsp"로 요청을 넘긴다.
+//			 	  
+//			 
+//			 return "redirect:/";
+//			 	- "redirect 방식"으로 여기서 리턴한 경로로 브라우저에서 다시 요청하도록 반환한다.	 
+//				(즉, 로그인이 성공했을 때, redirect 방식을 통해 다시 home 경로로 돌아오도록 요청!)
+//			
 		}
 		else { // 로그인 X
 			model.addAttribute("msg", "아이디나 패스워드가 일치하지 않습니다.");
 			model.addAttribute("location", "/");
 			
+			
 			return "common/msg"; // prefix가 views 까지 때문에!
 		}
 	}	
+	
+//	[ 로그아웃 구현 2 ] - SessionStatus 이용
+	@RequestMapping("/logout")
+	public String logout(SessionStatus status) {
+		
+		log.info("status.isComplete() : " + status.isComplete());
+		
+		status.setComplete();
+		
+		log.info("status.isComplete() : " + status.isComplete());
+		
+		return "redirect:/";
+	}
+	/*
+//	[ 로그아웃 구현1 ] - (HttpSession_기존 서블릿 방식) 
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	*/
+	
+	
+	/* ----------------------------------------------------- */
+	
+	/* [로그인 구현 2] @SessionAttributes와 ModelAndView 객체 사용
+	 	@SessionAttributes()
+	 	- @SessionAttributes("키값")은 Model 객체에 Attribute로 해당 키값으로 담기는 
+	 	  데이터를 request scope에서 session scope까지로 확장시켜준다
+	 	- (기존 1번방법)으로 session을 정리할 수 없고 SessionStatus 객체를 통해 session scope까지 범위가 확장된 데이터를 정리할 수 있다.
+	 	  (session.invalidate(); - X, status.setComplete(); - O)
+	 	  
+	 	ModelAndView
+	 	- ModelAndView 객체는 컨트롤러에서 데이터를 뷰로 전달하는 기능과 forward할 뷰에 정보를 담는 객체이다.
+	 	- addAttribute()가 아닌 "addObject() 메소드"를 통해서 데이터를 담을 수 있다.
+	 */
+	
+	/*
+	@RequestMapping(value = "member/login", method = {RequestMethod.POST})
+	public ModelAndView login(ModelAndView model,
+			@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd) {
+		
+		log.info("{}, {}", userId, userPwd);
+		
+		Member loginMember = service.login(userId, userPwd);
+		
+		if(loginMember != null) { // 로그인 O
+			model.addObject("loginMember", loginMember);
+			model.setViewName("redirect:/");
+		}
+		else { // 로그인 X
+			model.addObject("msg", "아이디나 패스워드가 일치하지 않습니다.");
+			model.addObject("location", "/");
+			model.setViewName("common/msg");
+				// 우리가 찾아야할 Jsp의 경로도 요청할 수 있지만, 
+				// model.setViewName("redirect:/");라는 접두어를 붙여서 브라우저가 다시 요청할 수 있게끔 처리도 가능!
+		}
+		return model;
+	}
+
+//	[ 로그아웃 구현 2 ] - SessionStatus 이용
+	@RequestMapping("/logout")
+	public String logout(SessionStatus status) {
+		
+		log.info("status.isComplete() : " + status.isComplete());
+		
+		status.setComplete();
+		
+		log.info("status.isComplete() : " + status.isComplete());
+		
+		return "redirect:/";
+	}
+	*/
+	
+//[ 회원가입 구현 ] 
+	//@RequestMapping(value = "/member/enroll", method = {RequestMethod.GET})
+	@GetMapping("/member/enroll")
+	public String enrollView() {
+		
+		log.info("회원가입 페이지 요청");
+		return "member/enroll";
+	}
+	
+	//@RequestMapping(value = "/member/enroll", method = {RequestMethod.POST})
+	@PostMapping("/member/enroll")
+	public ModelAndView enroll(ModelAndView model, @ModelAttribute Member member) {
+		
+		System.out.println(member);
+		
+		// save라는 메소드에 member 전달 -> 결과로는, 정수형 값을 보낼 것이다
+		//service.save(member);
+		int result = service.save(member);
+		
+		System.out.println(member);
+		
+		// [회원가입 성공 여부(OX)에 따른 로직]
+		if(result > 0) { // 회원가입 O(table에 1개의 행이 들어갔다는 것)
+			model.addObject("msg", "회원가입이 정상적으로 완료됐습니다.");
+			model.addObject("location", "/"); // 완료되고서 홈으로
+		}
+		else { // 회원가입 X
+			model.addObject("msg", "회원가입이 실패했습니다.");
+			model.addObject("location", "/member/enroll"); // 실패로 다시
+		}
+		
+		model.setViewName("common/msg");
+		return model;
+	}
+	
+	
 }
 
