@@ -2,19 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>로그인페이지</title>
+	<style>
+	
+	</style>
 </head>
-<body>
 
-<form action="${pageContext.request.contextPath}/login" method="post">
+<body>
+	<form action="${pageContext.request.contextPath}/login" method="post">
 
     <input type="text" name="loginId" placeholder="ID">
 
@@ -22,12 +24,7 @@
 
     <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
     
-    <input name="remember-me" type="checkbox" />자동 로그인
-    
     <button type="submit">로그인</button>
-    
 </form>
-
-
 </body>
 </html>

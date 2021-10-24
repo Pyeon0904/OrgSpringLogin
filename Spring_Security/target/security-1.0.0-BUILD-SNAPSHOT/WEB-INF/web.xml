@@ -5,7 +5,7 @@
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<!-- (add) security-context file -->
-	<context-param>
+		<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/*-context.xml
@@ -34,7 +34,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-    <!-- Spring Security Filter -->
+	<!-- (add)Spring Security Filter -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
