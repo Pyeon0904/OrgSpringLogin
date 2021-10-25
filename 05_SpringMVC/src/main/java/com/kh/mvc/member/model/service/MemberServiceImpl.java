@@ -2,7 +2,9 @@ package com.kh.mvc.member.model.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.mvc.member.model.mapper.MemberMapper;
 import com.kh.mvc.member.model.vo.Member;
@@ -46,24 +48,37 @@ public class MemberServiceImpl implements MemberService {
 //	@Autowired
 //	private SqlSession session;
 	
+	@Autowired // Encoder Bean 주입
+	private BCryptPasswordEncoder passwordEncoder;
+	
+//[ 로그인 로직 ] 	
 	@Override
 	public Member login(String id, String pwd) {
 		
 		Member member = mapper.selectMember(id); // 아이디로 조회해오고
 		
+		//암호화
+		System.out.println(passwordEncoder.encode(pwd));
+		System.out.println(passwordEncoder.matches(pwd, member.getPassword()));
+		// (원문, 암호화된 값)순으로 넘겨준다
+		
+		System.out.println();
 		
 		//[로직 Impl 구현 1]
-		if(member != null && member.getPassword().equals(pwd)) {
-			return member; // 조회한 아이디가 null이 아니고, 패스워드가 pwd와 동일하다면 member를 리턴
-		}
-		else {
-			return null;
-		}
-		
+//		if(member != null && member.getPassword().equals(pwd)) {
+//			return member; // 조회한 아이디가 null이 아니고, 패스워드가 pwd와 동일하다면 member를 리턴
+//		}
+//		else {
+//			return null;
+//		}
+// 위 부분 - 삼항연산자로 표현
+		return member != null && 
+				passwordEncoder.matches(pwd, member.getPassword()) ? member : null;
 	}
 	
-//	[회원가입 메소드 로직1]
+//[ 회원가입 메소드 로직1 ]
 	@Override
+	@Transactional
 	public int save(Member member) {
 		int result = 0;
 		
@@ -71,10 +86,14 @@ public class MemberServiceImpl implements MemberService {
  			
 		}
 		else { // DB에 존재 X 데이터(이제 첫 기록) --> "Insert!"
+			
+			member.setPassword(passwordEncoder.encode(member.getPassword()));
+			// 기존의 패스워드를 암호화해서 기존의 패스워드에 set해주는 것!
+			//insert 되기 전에 암호화해서 들어가게끔!
+
 			result = mapper.insertMember(member);
 			// result로 mapper 중 insertMember를 써서 member를 넘겨줘!
 		}
-		
 		return result;
 	}
 	

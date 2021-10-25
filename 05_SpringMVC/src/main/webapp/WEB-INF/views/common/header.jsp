@@ -125,6 +125,33 @@
     
 </head>
 <body>
+	<!-- 로그인 후 헤더 부분------------------------------------------------------------ -->
+		<c:if test="${ loginMember != null }">
+			<nav class="navbar">
+	        <div class="navbar__logo">
+	            <img src="${ path }/resources/images/Orangei_Logo.png" style="width:120px; height:50px;"/>
+	            
+	        </div>
+	        <ul class="navbar__menu">
+	            <li><a href="${ path }/">메인</a></li>
+	            <li><a href="${ path }/logout">로그아웃</a></li>
+	            <li><a href="${ path }/member/enroll">회원가입</a></li>
+	            <li><a href="${ path }/board/boardView">게시판</a></li>
+	        </ul>
+	        <ul class="navbar__icons">
+	            <li><i class="fab fa-twitter"></i></li>
+	            <li><i class="fab fa-instagram"></i></li>
+	        </ul>
+	
+	        <a href="#" class="navbar__toogleBtn">
+	            <i class="fas fa-bars"></i>
+	        </a>
+	    	</nav>
+		</c:if>
+	<!-- ----------------------------------------------------------------------------- -->
+
+	<!-- 로그인 전 헤더 부분------------------------------------------------------------ -->
+		<c:if test="${ loginMember == null }">
 	    <nav class="navbar">
         <div class="navbar__logo">
             <img src="${ path }/resources/images/Orangei_Logo.png" style="width:120px; height:50px;"/>
@@ -145,6 +172,8 @@
             <i class="fas fa-bars"></i>
         </a>
     </nav>
+    </c:if>
+	<!-- ----------------------------------------------------------------------------- -->
     
 
 </body>

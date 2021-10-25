@@ -8,6 +8,8 @@
 						http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<import resource="mybatis-context.xml"/>
+	<import resource="security-context.xml"/>
+	
 	
 	<!-- <context:property-placeholder/> : 외부의 properties 파일 불러오기 위해 사용 -->
 	<context:property-placeholder location="classpath:driver.properties" />

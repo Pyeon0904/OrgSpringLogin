@@ -41,7 +41,7 @@
       
          /* 페이지 TITLE-------------------------------------------- */
             #pageName{
-               color : rgb(241, 107, 27);
+               color : white;
                font-family:GmarketSansLight;
                text-align:center;
                font-size: 20pt;
@@ -99,13 +99,14 @@
                float: right; text-align: center;
                width: 70px;   height: 30px;
                padding: 5px 5px;
-               background-color: transparent;
-               border:1px solid black;
+               background: #2a1b0a;
+               border:1px solid white;
                border-radius: 5px;
-               color: black;
+               color: white;
             }
             /*글쓰기 버튼에 마우스 올릴때*/
-            #btn-add:hover { background-color:rgb(246, 189, 102); }
+            #btn-add:hover { border: 3px solid wheat;
+            }
          /* -------------------------------------------------------------*/   
          
          /* 하단 페이지바 관련 스타일------------------------------------*/
@@ -136,10 +137,34 @@
    <div id="box">
       <section id="section">
          <div id="conbox">
-            <h1 id="pageName" align="center">게시글 조회</h1>
-            <br><br><br><br>
+            <h1 id="pageName" align="center">후기 전체보기</h1>
+            
          
-       
+       <!-- 검색 폼 시작--------------------- -->
+         <form id="searchForm" name="form1" method="GET" action="${path}/board/boardSearch">
+            <div align="right" class="row m-4">
+            
+               <p style="margin-bottom:10px;">조회기간을 선택해주세요 
+                  <input type="text" id="datepicker1" name="startdate" style="padding-top: 5px; padding-bottom: 6px;"><img src="${path}/resources/images/calendar-icon.png" id="startDt" style="margin-left:-24px; margin-bottom:-7px;">~
+                  <input type="text" id="datepicker2" name="enddate" style="padding-top: 5px; padding-bottom: 6px;"><img src="${path}/resources/images/calendar-icon.png" id="endDt" style="margin-left:-24px; margin-bottom:-7px;">
+               </p>
+
+               <select name="type" class="form-control" id="type" required>
+                  <option value="" selected disabled hidden>::검색 유형::</option>
+                  <option value="1">글제목</option>
+                  <option value="2">작성자</option>
+                  <option value="3">글내용</option>
+                  <option value="4">전체</option>
+               </select> 
+               
+               <input type="text" name="keyword" class="form-control" id="keyword"
+                  placeholder="검색어를 입력하세요" style="padding: 3px 20px 6px 20px" value=${ keyword }>
+               <button type="submit" class="btn btn-warning" id="search">검색</button>
+
+            </div>
+         </form>
+         <!-- 검색 폼 끝---------------------- -->
+         <br><br>
          <form id="boardForm" name="boardForm">
             <input type="hidden" id="function_name" name="function_name" value="getBoardList" />
             <input type="hidden" id="current_page_no" name="current_page_no" value="1" />
@@ -242,8 +267,6 @@
             </c:if>
          </div>
       </div>
-      
-      <!-- 페이지바(PageBar) -->
             <div id="pageBar" style="align:center;">
 		         <!-- 맨 처음으로 -->
 		         <button onclick="location.href='${ path }/board/boardList?page=1'">&lt;&lt;</button>
@@ -274,7 +297,7 @@
 
                <!-- '글쓰기' 버튼 -->
                <button type="button" id="btn-add"
-                  onclick="location.href='${ path }/board/boardWrite'">글쓰기</button>
+                  onclick="location.href='${ path }/community/review/write'">글쓰기</button>
             </div>
             </div>
       </section>

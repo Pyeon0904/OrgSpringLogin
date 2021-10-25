@@ -26,7 +26,7 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				 </exclusion>
-			</exclusions>
+			</exclusions> 
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -40,7 +40,32 @@
 		    <scope>test</scope>
 		</dependency>
 		
-		
+		<!-- (add)Spring Security -->
+	    <dependency> 
+	    	<groupId>org.springframework.security</groupId> 
+	    	<artifactId>spring-security-core</artifactId> 
+	    	<version>${security.version}</version> 
+	    </dependency> 
+	    <dependency> 
+	    	<groupId>org.springframework.security</groupId> 
+	    	<artifactId>spring-security-web</artifactId> 
+	    	<version>${security.version}</version> 
+	    </dependency> 
+	    <dependency>
+	    	<groupId>org.springframework.security</groupId>
+	    	<artifactId>spring-security-config</artifactId>
+	    	<version>${security.version}</version> 
+	    </dependency>
+	    <dependency> 
+	    	<groupId>org.springframework.security</groupId> 
+	    	<artifactId>spring-security-taglibs</artifactId> 
+	    	<version>${security.version}</version> 
+	    </dependency> 
+	    <dependency> 
+	    	<groupId>org.springframework.security</groupId> 
+	    	<artifactId>spring-security-test</artifactId> 
+	    	<version>${security.version}</version> 
+	    </dependency>
 				
 		<!-- AspectJ -->
 		<dependency>

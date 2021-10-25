@@ -26,14 +26,14 @@
         .box{ 
             
             width:100%;
-            height:300px; 
+            height:450px; 
             margin-top:100px;
-            margin-bottom:90px;
+            margin-bottom:300px;
         }
 
         .conbox{
             position:relative; 
-            width:30%; 
+            width:40%; 
             top:20px;
             margin-left: auto;
             margin-right: auto;
@@ -42,7 +42,7 @@
             border-radius: 30px;
         }
         /* -------------------------------------------------------- */
-
+		
         .loginTitle{
             text-align: center;
             margin-top: 30px;
@@ -95,7 +95,11 @@
         a { 
             text-decoration:none;
         } 
-
+			
+		.kakaoImg{
+			text-align: right;
+		}
+		
     </style>
 
 </head>
@@ -137,12 +141,12 @@
 	            </tr>
 	        </table>
 	
-	        <a href="#">
+	        <!-- <a href="#">
 	            <i class="fab fa-twitter"></i>
 	        </a>
 	        <a href="#">
 	            <i class="fab fa-instagram"></i>
-	        </a>
+	        </a>  -->
 	        </form>
 		</c:if>
 		
@@ -151,13 +155,39 @@
 			<div class="logoutForm">
 			${ loginMember.name }님, 안녕하세요.
 			<button onclick="location.replace('${path}/logout')">로그아웃</button>
-			</div>	
+			</div>
 		</c:if>
-		       
-	    </div>
-	</div>
-
-
+		
+		<!-- 로그인이 안 되어있을 때 -->
+		<c:if test="${ loginMember == null }">       
+			<div class="kakaoImg">
+			<!-- Kakao 로그인 관련 -->
+			<a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height:40px; width:auto; border-radius: 30px;"/></a>
+		    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		    <script>
+		        //Javascript 키 : 	427203f7175b539affe5f0ed8831e4a2
+		        window.Kakao.init("427203f7175b539affe5f0ed8831e4a2"); // 어느 애플리케이션이 연동될지 key 입력
+		
+		        function kakaoLogin(){
+		            window.Kakao.Auth.login({
+		                scope:'profile_nickname, account_email, gender, age_range, birthday',
+		                success: function(authObj){
+		                    console.log(authObj);
+		                    window.Kakao.API.request({
+		                        url:'/v2/user/me',
+		                        success: res => {
+		                            const kakao_account = res.kakao_account;
+		                            console.log(kakao_account);
+		                        }
+		                    });
+		                }
+		            });
+		        }
+	   		</script>
+	   		</div>
+   		</c:if>
+    </div>
+</div>	
 </body>
 </html>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
