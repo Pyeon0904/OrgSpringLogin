@@ -12,7 +12,7 @@
         .box{ 
             
             width:100%;
-            height:1000px; 
+            height:400px; 
             margin-top:auto;
             margin-bottom:90px;
         }

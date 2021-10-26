@@ -23,7 +23,7 @@
             #box{ 
                background-color:rgb(243, 211, 174);
                width:100%;
-               height:1000px; 
+               height:400px; 
                margin-top:130px;
                margin-bottom:100px;
                margin-left:-10px;
@@ -41,11 +41,10 @@
       
          /* 페이지 TITLE-------------------------------------------- */
             #pageName{
-               color : rgb(241, 107, 27);
-               font-family:GmarketSansLight;
-               text-align:center;
-               font-size: 20pt;
-            }
+ 	           text-align: center;
+    	       margin-top: 30px;
+        	   color: rgb(241, 107, 27);
+        	}
          /* --------------------------------------------------------- */
          
          
@@ -133,10 +132,9 @@
    </head>
    
 <body>
+   <h1 id="pageName" align="center">게시글 조회</h1>
    <div id="box">
-      <section id="section">
          <div id="conbox">
-            <h1 id="pageName" align="center">게시글 조회</h1>
             <br><br><br><br>
          
        

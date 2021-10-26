@@ -217,7 +217,7 @@ public class MemberController {
 		}
 		else { // 로그인 X
 			model.addAttribute("msg", "아이디나 패스워드가 일치하지 않습니다.");
-			model.addAttribute("location", "/");
+			model.addAttribute("location", "/member/login");
 			
 			
 			return "common/msg"; // prefix가 views 까지 때문에!
