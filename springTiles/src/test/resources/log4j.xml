@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.org.tiles">
+	<logger name="com.org.springTiles">
 		<level value="info" />
 	</logger>
 	

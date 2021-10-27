@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.org</groupId>
-	<artifactId>tiles</artifactId>
+	<artifactId>springTiles</artifactId>
 	<name>springTiles</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
@@ -16,7 +16,7 @@
 		<org.apache.tiles-version>3.0.3</org.apache.tiles-version>
 	</properties>
 	<dependencies>
-		<!-- Spring -->
+<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -34,7 +34,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
 		
 		<!-- (add)Spring Security -->
 	    <dependency> 
@@ -62,18 +61,18 @@
 	    	<artifactId>spring-security-test</artifactId> 
 	    	<version>${security.version}</version> 
 	    </dependency>
-		
+			
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
+		</dependency>
 		
-		<!-- 
-			@AsoaectJ Annotation 스타일 방식으로 사용하기 위해서 의존성 주입 
-				@Aspect, @Pointcut, @Before @After, ... 등
-		-->
+<!-- 
+@AsoaectJ Annotation 스타일 방식으로 사용하기 위해서 의존성 주입 
+(@Aspect, @Pointcut, @Before @After, ... 등)
+-->
 		<dependency>
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
@@ -164,8 +163,8 @@
 		    <artifactId>taglibs-standard-compat</artifactId>
 		    <version>1.2.5</version>
 		</dependency>
-		
-	<!-- DB 관련 라이브러리 -->
+
+<!-- DB 관련 라이브러리 -->
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc6</artifactId>
@@ -178,28 +177,37 @@
 		    <version>3.5.7</version>
 		</dependency>
 		
-		<!-- spring-jdbc -->
+			<!-- spring-jdbc -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
-		<!-- myBatis-->
+			<!-- myBatis-->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis-spring</artifactId>
 		    <version>2.0.6</version>
 		</dependency>
 
-		<!-- DBCP (커넥션 풀 기능을 사용하기 위한 라이브러리) -->		
+			<!-- DBCP (커넥션 풀 기능을 사용하기 위한 라이브러리) -->		
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-dbcp2</artifactId>
 		    <version>2.9.0</version>
 		</dependency>
 		
-		<!-- Tiles -->
+		
+<!-- lombok -->
+	  	<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.20</version>
+		    <scope>provided</scope>
+		</dependency> 
+		
+<!-- Tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
@@ -220,15 +228,7 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
-		
-		<!-- lombok -->
-	  	<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.20</version>
-		    <scope>provided</scope>
-		</dependency> 
-		
+				
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

@@ -2,41 +2,45 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 
+<tiles-definitions>
+  <definition name="notice.list" template="WEB-INF/views/customer/inc/layout.jsp">
+    <put-attribute name="title" value="공지사항" />
+    <put-attribute name="header" value="WEB-INF/views/inc/header.jsp" />
+    <put-attribute name="visual" value="WEB-INF/views/customer/inc/visual.jsp" />
+    <put-attribute name="aside" value="WEB-INF/views/customer/inc/aside.jsp" />
+    <put-attribute name="body" value="WEB-INF/views/customer/notice/list.jsp" />
+    <put-attribute name="footer" value="WEB-INF/views/inc/footer.jsp" />
+  </definition>
+  
+  <definition name="notice.detail" template="WEB-INF/views/customer/inc/layout.jsp">
+    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="header" value="WEB-INF/views/inc/header.jsp" />
+    <put-attribute name="visual" value="WEB-INF/views/customer/inc/visual.jsp" />
+    <put-attribute name="aside" value="WEB-INF/views/customer/inc/aside.jsp" />
+    <put-attribute name="body" value="WEB-INF/views/customer/notice/detail.jsp" />
+    <put-attribute name="footer" value="WEB-INF/views/inc/footer.jsp" />
+  </definition>
+</tiles-definitions>
+ -->   
  
 <tiles-definitions>
-	<!-- main layout -->
-	<definition name="layout-tiles" template="/WEB-INF/views/tiles/tiles-layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/tiles/headerTemplate.jsp" />
-		<put-attribute name="left" value="/WEB-INF/views/tiles/sidebarTemplate.jsp" />
-		<put-attribute name="foot" value="/WEB-INF/views/tiles/footerTemplate.jsp" />
-	</definition>
-	
-	<definition name="*.page" extends="base">
-        <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
-    </definition>
  
-     <definition name="*/*.page" extends="base">
-         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-     </definition>
-    
-    <definition name="*/*/*.page" extends="base">
-        <put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-    </definition>
-    
-    <!-- 메뉴 미표시 -->
-    <definition name="baseEmpty" template="/WEB-INF/tiles/templateEmpty.jsp">
-    </definition>
-    
-    <definition name="*.part" extends="baseEmpty">
-        <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
-    </definition>
- 
-     <definition name="*/*.part" extends="baseEmpty">
-         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-     </definition>
-    
-    <definition name="*/*/*.part" extends="baseEmpty">
-        <put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-    </definition>        
-    
+	<!-- menu list -->
+  <definition name="super" template="/WEB-INF/views/project/project_template.jsp">
+	<!-- <put-attribute name="title" value="gaia" /> -->
+  	<put-attribute name="preScript" value="/resources/assets/custom_template/preScript.jsp" />
+  	<put-attribute name="preloader" value="/resources/assets/custom_template/preloader.jsp" />
+  	<put-attribute name="navheader" value="/resources/assets/custom_template/navheader.jsp" />
+  	<put-attribute name="header" value="/resources/assets/custom_template/header.jsp" />
+  	<put-attribute name="sidebar-project" value="/resources/assets/custom_template/sidebar-project.jsp" />
+  	<put-attribute name="footer" value="/resources/assets/custom_template/footer.jsp"/>
+  	<put-attribute name="postScript" value="/resources/assets/custom_template/postScript.jsp" />
+  </definition>
+  
+  <definition name="project/*" extends="super">
+  	<put-attribute name="content" value="/WEB-INF/views/project/{1}.jsp" />
+  </definition>
+  
 </tiles-definitions>
