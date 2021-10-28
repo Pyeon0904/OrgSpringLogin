@@ -96,6 +96,22 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return result;
 	}
+
+	@Override
+	public boolean validate(String userId) {
+
+		
+		return this.findById(id) != null;
+	}
+
+	@Override
+	public Member findById(String id) {
+
+		
+		return mapper.selectMember(id);
+	}
+
+
 	
 	
 	

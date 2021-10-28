@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class boardController {
 	
-//	[ 게시판 리스트(boardView) 페이지 연결]
+//	[ 게시판 '리스트(boardView)' 페이지 연결]
 	@GetMapping("/board/boardView")
 	public String boardView() {
 		
@@ -17,9 +17,9 @@ public class boardController {
 		
 		return "/board/boardView";
 	}
-
 	
-//  [ 게시판 '글쓰기' 페이지 구현]
+	
+//  [ 게시판 '글쓰기(boardWrite)' 페이지 연결]
 	@GetMapping("/board/boardWrite")
 	public String boardWrite() {
 		
