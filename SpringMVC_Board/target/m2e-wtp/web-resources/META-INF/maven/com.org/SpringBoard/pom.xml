@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.org</groupId>
-	<artifactId>orgLogin</artifactId>
-	<name>OrgSpring_Login</name>
+	<artifactId>SpringBoard</artifactId>
+	<name>SpringMVC_Board</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -32,13 +32,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${org.springframework-version}</version>
-		    <scope>test</scope>
-		</dependency>
-				
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -54,6 +48,12 @@
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${org.aspectj-version}</version>
+		</dependency>
+		
+		<dependency>
+		  	<groupId>ch.qos.logback</groupId>
+		  	<artifactId>logback-classic</artifactId>
+		  	<version>1.2.3</version>
 		</dependency>
 		
 		<!-- Logging -->
@@ -74,13 +74,6 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<dependency>
-		  <groupId>ch.qos.logback</groupId>
-		  <artifactId>logback-classic</artifactId>
-		  <version>1.2.3</version>
-		</dependency>
-		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -103,6 +96,7 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- @Inject -->
@@ -111,7 +105,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-				
+		
 		<!-- Servlet -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
@@ -141,6 +135,40 @@
 		    <version>1.2.5</version>
 		</dependency>
 		
+<!-- DB 관련 라이브러리 -->
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc6</artifactId>
+		    <version>11.2.0.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.7</version>
+		</dependency>
+		
+		<!-- spring-jdbc -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- myBatis-->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.6</version>
+		</dependency>
+
+		<!-- DBCP (커넥션 풀 기능을 사용하기 위한 라이브러리) -->		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
+		
 		<!-- lombok -->
 	  	<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -148,7 +176,7 @@
 		    <version>1.18.20</version>
 		    <scope>provided</scope>
 		</dependency> 	
-	
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

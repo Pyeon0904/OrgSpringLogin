@@ -74,7 +74,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- 새로 추가 -->
+		
 		<dependency>
 		  <groupId>ch.qos.logback</groupId>
 		  <artifactId>logback-classic</artifactId>
@@ -125,7 +125,6 @@
 		    <version>2.3.3</version>
 		    <scope>provided</scope>
 		</dependency>
-	
 		<dependency>
 		    <groupId>org.apache.taglibs</groupId>
 		    <artifactId>taglibs-standard-impl</artifactId>

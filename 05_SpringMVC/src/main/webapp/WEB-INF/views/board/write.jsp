@@ -56,39 +56,42 @@
 <div id="box">
 <section id="section">
 <div id="conbox">
-	<h1 class="pageTitle" align="center">게시글 작성</h1>
-		<form action="${ path }/board/boardWrite" enctype="multipart/form-data" method="POST">
-			<table class="tableWrite">
-				<caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
-				    <colgroup>
-				        <col width="20%">
-				        <col width="*">
-				    </colgroup>
-				    <tbody class="tableWrite">
-						<tr>
-							<th>제목<span class="t_red">*</span></th>
-							<td><input type="text" name="title" class="tbox01" placeholder="제목을 입력해주세요." style="width:350px" required/></td>
-						</tr>
-						<tr>
-							<th>작성자</th>
-							<td><input type="text" name="writerId" class="tbox01" value="${ loginMember.id }" style="width:350px" readonly></td>
-						</tr>
-						<tr>
-							<th>내용<span class="t_red">*</span></th>
-							<td><textarea id="summernote" name="content" style="height:300px; width:350px;" required></textarea></td>
-						</tr>
-						<tr>
-							<th scope="row">첨부파일</th>
-							<td><input type="file" name="upfile"></td>
-						</tr>
-				    </tbody>
+		<h2>게시판 작성</h2>
+	<div id='board-write-container'>
+		<form action="${ path }/board/write" method="POST" 
+					enctype="multipart/form-data">
+			<table id='tbl-board'>
+				<tr>
+					<th>제목</th>
+					<td><input type="text" name="title" id="title"></td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td><input type="text" name="writerId" value="${ loginMember.id }" readonly></td>
+				</tr>
+				<tr>
+					<th>첨부파일1</th>
+					<td><input type="file" name="upfile"></td>
+				</tr>
+				<!-- 
+				<tr>
+					<th>첨부파일2</th>
+					<td><input type="file" name="upfile"></td>
+				</tr>
+				 -->
+				<tr>
+					<th>내용</th>
+					<td><textarea name="content" cols="50" rows="15" ></textarea></td>
+				</tr>
+				<tr>
+					<th colspan="2">
+						<input type="submit" value="등록">
+						<input type="reset" value="취소">
+					</th>
+				</tr>
 			</table>
-			<br><br><br>
-				<div class="btn_bottom">
-					<input type="submit" value="등록하기">
-					<button type="button" onclick="location.href='${path}/board/boardView'">목록으로</button>
-				</div>
 		</form>
+	</div>
 </div>
 </section>
 </div>

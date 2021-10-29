@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="OrgSpring_Login" path="/" reloadable="true" source="org.eclipse.jst.jee.server:OrgSpring_Login"/><Context docBase="05_SpringMVC" path="/mvc" reloadable="true" source="org.eclipse.jst.jee.server:05_SpringMVC"/><Context docBase="Spring_Security" path="/security" reloadable="true" source="org.eclipse.jst.jee.server:Spring_Security"/><Context docBase="kakaologin" path="/kakaologin" reloadable="true" source="org.eclipse.jst.jee.server:kakaologin"/></Host>
+      <Context docBase="OrgSpring_Login" path="/" reloadable="true" source="org.eclipse.jst.jee.server:OrgSpring_Login"/><Context docBase="05_SpringMVC" path="/mvc" reloadable="true" source="org.eclipse.jst.jee.server:05_SpringMVC"/><Context docBase="Spring_Security" path="/security" reloadable="true" source="org.eclipse.jst.jee.server:Spring_Security"/><Context docBase="kakaologin" path="/kakaologin" reloadable="true" source="org.eclipse.jst.jee.server:kakaologin"/><Context docBase="SpringMVC_Board" path="/SpringBoard" reloadable="true" source="org.eclipse.jst.jee.server:SpringMVC_Board"/></Host>
     </Engine>
   </Service>
 </Server>
