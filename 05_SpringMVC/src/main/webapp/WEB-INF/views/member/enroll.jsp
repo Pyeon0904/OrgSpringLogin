@@ -24,7 +24,7 @@
 
         .conbox{
             position:relative; 
-            width:30%; 
+            width:40%; 
             top:20px;
             margin-left: auto;
             margin-right: auto;

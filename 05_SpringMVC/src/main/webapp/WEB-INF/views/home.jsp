@@ -10,7 +10,6 @@
 	<style>
 		/* 전체 틀 ------------------------------------------------- */
         .box{ 
-            
             width:100%;
             height:400px; 
             margin-top:auto;
@@ -44,27 +43,10 @@
 <div class="box">
     <div class="conbox">
         <img src="${path}/resources/images/mainBackground.jpg" style="width:100%; height:600px" />
-		
-		<!-- 로그인 X
-		<c:if test="${ loginMember == null }">
-			<form action="login" method="POST">
-				아이디 : <input type="text" name="userId" required/><br>
-				비밀번호 : <input type="password" name="userPwd" required><br><br>
-				
-				<input type="submit" value="로그인"/>
-			</form>
-		</c:if>
-		-->
-		
-		<!-- 로그인 O 
-		<c:if test="${ loginMember != null }">
-			${ loginMember.name }님, 안녕하세요.
-			<button onclick="location.replace('${path}/logout')">로그아웃</button>	
-		</c:if>
-		-->
-		
 	</div>
 </div>
+	<h2>MAKE THE NEW FUTURE</h2>
+	<h4>새로운 미래를 만들어 갑니다.</h4>
 </body>
 </html>
 

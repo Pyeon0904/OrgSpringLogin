@@ -21,6 +21,11 @@
 		p:username="${db.username}"
 		p:password="${db.password}"
 	/>	
+	
+	<bean id="mybatisConfig" class="org.apache.ibatis.session.Configuration"
+		p:jdbcTypeForNull="NULL"
+	/>
+	
 	<!-- 
 	<context:property-placeholder location="classpath:driver.properties" />
 	지정 후 p: 부분 위와같이 변경!
