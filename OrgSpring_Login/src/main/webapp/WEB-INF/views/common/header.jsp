@@ -4,11 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Orange-I</title>
+	
+	<script src="${ path }/js/jquery-3.6.0.min.js"></script>
+	
 	
 	<!-- 사용하려는 Font awesome 아이콘 사용 대표링크-->
     <script src="https://kit.fontawesome.com/cc18e3ecc9.js" crossorigin="anonymous"></script>
@@ -17,7 +21,7 @@
  	/* 세세한 색을 바꾸려면? 일일이? X */
 		/* :root를 사용해 대표 색을 정의해주고! 후에 color: var(--text-color) 로 지정*/
 		:root {
-		  --text-color: #f0f4f5;
+		  
 		  --background-color: #263343;
 		  --accent-color: #d49466;
 		}
@@ -57,6 +61,7 @@
 		
 		.navbar__menu li {
 		  padding: 8px 12px;
+		  color : white;
 		}
 		
 		.navbar__menu li:hover {
@@ -97,6 +102,7 @@
 		    flex-direction: column;
 		    align-items: center;
 		    width: 100%;
+		    color: black;
 		  }
 		
 		  .navbar__menu li {
@@ -124,6 +130,33 @@
     
 </head>
 <body>
+	<!-- 로그인 후 헤더 부분------------------------------------------------------------ -->
+		<c:if test="${ loginMember != null }">
+			<nav class="navbar">
+	        <div class="navbar__logo">
+	            <img src="${ path }/resources/images/Orangei_Logo.png" style="width:120px; height:50px;"/>
+	            
+	        </div>
+	        <ul class="navbar__menu">
+	            <li><a href="${ path }/">메인</a></li>
+	            <li><a href="${ path }/logout">로그아웃</a></li>
+	            <li><a href="${ path }/member/enroll">회원가입</a></li>
+	            <li><a href="${ path }/board/list">게시판</a></li>
+	        </ul>
+	        <ul class="navbar__icons">
+	            <li><i class="fab fa-twitter"></i></li>
+	            <li><i class="fab fa-instagram"></i></li>
+	        </ul>
+	
+	        <a href="#" class="navbar__toogleBtn">
+	            <i class="fas fa-bars"></i>
+	        </a>
+	    	</nav>
+		</c:if>
+	<!-- ----------------------------------------------------------------------------- -->
+
+	<!-- 로그인 전 헤더 부분------------------------------------------------------------ -->
+		<c:if test="${ loginMember == null }">
 	    <nav class="navbar">
         <div class="navbar__logo">
             <img src="${ path }/resources/images/Orangei_Logo.png" style="width:120px; height:50px;"/>
@@ -132,8 +165,8 @@
         <ul class="navbar__menu">
             <li><a href="${ path }/">메인</a></li>
             <li><a href="${ path }/member/login">로그인</a></li>
-            <li><a href="${ path }/member/enroll">회원가입</a></li>
-            <li><a href="${ path }/board/boardView">게시판</a></li>
+            <li><a href="${ path }/member/enrollCheck">회원가입</a></li>
+            <li><a href="${ path }/board/list">게시판</a></li>
         </ul>
         <ul class="navbar__icons">
             <li><i class="fab fa-twitter"></i></li>
@@ -144,6 +177,8 @@
             <i class="fas fa-bars"></i>
         </a>
     </nav>
+    </c:if>
+	<!-- ----------------------------------------------------------------------------- -->
     
 
 </body>

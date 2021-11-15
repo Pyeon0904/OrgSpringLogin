@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* boardWrite css */
+
+        tr, th, td{
+        	width: 400px;
+        	padding: 10px;
+        }
+		
+		.btn_YS{
+			text-align:center;
+		}

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/* 로그인 관련 css */
+
+		
+		.loginTable{
+            margin: auto;
+        }
+		
+		.saveId{
+            float: left;
+            font-size: 5px;
+        }
+		
+		/* 로그인 후, 로그아웃 폼 */
+		.logoutForm{
+			text-align:right;
+		}
+		
+        a { 
+            text-decoration:none;
+        } 
+			
+		.kakaoImg{
+			text-align: right;
+		}

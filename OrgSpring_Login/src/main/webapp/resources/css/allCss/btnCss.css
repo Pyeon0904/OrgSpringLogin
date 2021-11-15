@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/* 전 페이지 버튼 관련 css */
+
+        /* 게시판 글쓰기 버튼------------------------------------- */
+        #btn-add{
+        	border-radius:10px;
+        	margin-right:20px;
+        	background-color: transparent;
+        	cursor:pointer;
+        }
+        
+        #btn-add:hover{
+        	background-color:rgb(246, 189, 102);
+            color: white;
+        }
+        /* --------------------------------------------------- */
+        
+ 		/* boardView btn */
+        #btnUpdate, #btnDelete, #btnList {
+        	background-color: transparent;
+        	border-radius: 10px;
+        	cursor:pointer;
+        }
+        
+        #btnUpdate:hover, #btnDelete:hover, #btnList:hover {
+        	background-color:rgb(246, 189, 102);
+        	color: white;
+        }
+        
+        /* (login)찾기버튼 : 아이디 / 패스워드--------------------- */
+        .btnSearch{
+            background-color: transparent;
+            color: darkgray;
+            border: 0;
+            outline: 0;
+        }
+
+        .btnSearch:hover{
+            color:rgb(246, 189, 102);
+        }
+        /* ---------------------------------------------- */
+
+        /* (login)로그인 / 회원가입 버튼-------------------------- */
+        .btnLogin, .btnEnroll{
+            margin-top: 15px;
+            height: 30px;
+            width: 170px;
+            background-color: transparent;
+            border-radius: 10px;
+            cursor:pointer;
+        }
+
+
+        .btnEnroll:hover, .btnLogin:hover, .btnFind:hover{
+            background-color:rgb(246, 189, 102);
+            color: white;
+        }
+        /*-----------------------------------------------*/
+        

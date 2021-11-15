@@ -9,7 +9,7 @@
   	namespace 속성
   		외부에서 이 mapper에 접근할 수 있는 별칭	
   -->
- <mapper namespace="memberMapper">
+ <mapper namespace="com.kh.mvc.member.model.mapper.MemberMapper">
  	<!-- 
  		중복되는 쿼리 내용을 재사용하기 위한 SQL 조각
  		사용하려는 태그보다 항상 위에 있어야한다.
@@ -147,7 +147,7 @@
 		    DEFAULT,
 		    #{name},
 		    #{phone},
-		    #{email} ,
+		    #{email},
 		    #{address},
 		    #{hobby},
 		    DEFAULT,
@@ -160,7 +160,6 @@
  		UPDATE MEMBER 
  		SET 
  			NAME = #{name},
- 			PASSWORD = #{password},
  			PHONE = #{phone},
  			EMAIL = #{email},
  			ADDRESS = #{address},
@@ -169,7 +168,11 @@
 		WHERE NO = #{no}
  	</update>
  	
- 	<delete id="deleteMember" parameterType="_int">
- 		DELETE FROM MEMBER WHERE NO=#{memberNo}
- 	</delete>
+ 	<update id="deleteMember" parameterType="_int">
+ 		UPDATE MEMBER
+ 		SET
+ 			STATUS='N'
+ 		WHERE 
+ 			NO=#{no}
+ 	</update>
  </mapper>

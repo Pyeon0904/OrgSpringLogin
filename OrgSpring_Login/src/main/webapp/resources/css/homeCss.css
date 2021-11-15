@@ -1,0 +1,34 @@
+@charset "UTF-8";
+/*home(main) 페이지 CSS*/
+
+		/* 전체 틀 ------------------------------------------------- */
+        .box{
+        	position:relative; 
+            width:100%;
+            height:600px; 
+            margin-top:auto;
+            margin-bottom:90px;
+        }
+        .conbox{
+            position:relative; 
+            width:100%; 
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            background-color:none;
+            border-radius: 30px;
+        }
+        /* -------------------------------------------------------- */
+		
+
+		/* 상단이미지 중앙 문구 */
+		.pageTitle{
+			position: absolute;
+			text-align: center;
+			color: white;
+			top:50%;
+			left:50%;
+			background-color:none;
+			transform: translate( -50%, -20% );	
+		}
