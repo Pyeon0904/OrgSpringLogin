@@ -68,7 +68,6 @@
 			
 		// 유효성 검사(JavaScript) ----------------------------------------------------------
 		// $(document).ready(() => {
-		document.addEventListener('DOMContentLoaded', function() {
 			/*
 			// 아이디 유효성 검사 (jQuery)
 				$("#newId").on("input", function(){
@@ -406,7 +405,7 @@
 				</tr>
 			</table>
 			
-			<br><br>
+			<br><br><br><br>
 			
 			<div align="center">
 				<input type="submit" id="enrollSubmit" value="가입"/>

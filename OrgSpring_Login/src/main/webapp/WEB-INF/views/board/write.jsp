@@ -61,11 +61,9 @@
 				</tr>
 				<tr>
 					<th colspan="2">
-						<div class="btn_YS">
-							<input type="submit" value="등록"
-									style="border-radius: 10px; cursor:pointer; background-color: transparent;">
-							<input type="reset" value="취소"
-									style="border-radius: 10px; cursor:pointer; background-color: transparent;">
+						<div>
+							<input type="submit" class="btn_YS" value="등록">
+							<input type="reset" class="btn_YS" value="취소">
 						</div>
 					</th>
 				</tr>

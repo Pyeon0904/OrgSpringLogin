@@ -12,12 +12,12 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.mvc.board.model.mapper.BoardMapper;
-import com.kh.mvc.board.model.vo.Board;
-import com.kh.mvc.common.util.PageInfo;
+import com.org.orgLogin.board.model.mapper.BoardMapper;
+import com.org.orgLogin.board.model.vo.Board;
+import com.org.orgLogin.common.util.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// board 
 	@Override
-	@Transactional
+	//@Transactional
 	public int save(Board board) {
 		int result = 0;
 		

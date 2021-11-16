@@ -14,11 +14,11 @@
 
         .conbox{
             position:relative; 
-            width:70%; 
+            width:100%; 
             top:20px;
             margin-left: auto;
             margin-right: auto;
-            height: 600px;
+            height: 650px;
             background-color:#F1F1F1;
             border-radius: 30px;
         }

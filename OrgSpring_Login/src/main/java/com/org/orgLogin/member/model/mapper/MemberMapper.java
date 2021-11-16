@@ -1,11 +1,14 @@
 package com.org.orgLogin.member.model.mapper;
 
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.org.orgLogin.member.model.vo.Member;
 
-// [1] 'Bean 등록한 session을 @Autowired 주입받는 방법'을 사용하는 방법
+//[1] 'Bean 등록한 session을 @Autowired 주입받는 방법'을 사용하는 방법
 /*
 @Repository
 public class MemberDao {
@@ -24,10 +27,10 @@ public class MemberDao {
 */
 
 
-// [2] Mapperscan을 통한 @mapper 주입방식('@Autowired를 통해 주입받는 게 아닌 방법'을 사용하는 방법)
-//  - @Mapper 사용! 
-//  - 이후 mapper에서 namespace를 패키지경로로 새로 지정(복붙)해준다!
-//  - 메소드명을 findMemberById -> selectMember(mapper의 사용할 select id명과 동일하게!) - Impl에서도 바꿔주고!
+//[2] Mapperscan을 통한 @mapper 주입방식('@Autowired를 통해 주입받는 게 아닌 방법'을 사용하는 방법)
+//- @Mapper 사용! 
+//- 이후 mapper에서 namespace를 패키지경로로 새로 지정(복붙)해준다!
+//- 메소드명을 findMemberById -> selectMember(mapper의 사용할 select id명과 동일하게!) - Impl에서도 바꿔주고!
 @Mapper
 public interface MemberMapper {
 	public Member selectMember(@Param("id") String id);
@@ -37,3 +40,4 @@ public interface MemberMapper {
 	
 	
 }
+

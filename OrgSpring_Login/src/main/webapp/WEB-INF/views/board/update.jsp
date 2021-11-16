@@ -67,13 +67,12 @@
 					<textarea class="content" name="content" cols="50" rows="15" ><c:out value="${ board.content }"></c:out></textarea>
 				</td>
 			</tr>
-			<tr>
-				<th colspan="2">
-					<input type="submit" value="수정">
-					<input type="button" onclick="location.replace('${ path }/board/list')" value="목록으로">
-				</th>
-			</tr>
 		</table>
+		<br><br><br>
+		<div align="center">
+			<input type="submit" class="update-btn" value="수정">
+			<input type="button" class="update-btn" onclick="location.replace('${ path }/board/list')" value="목록으로">
+		</div>
 	</form>
 </div>
 </div>

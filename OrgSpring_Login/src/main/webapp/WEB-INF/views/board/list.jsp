@@ -15,6 +15,7 @@
 <title>게시판 리스트</title>
 <!-- css 참조 -->
 <link rel=stylesheet href="${ path }/resources/css/allCss/allCss.css"/>
+<link rel=stylesheet href="${ path }/resources/css/allCss/btnCss.css"/>
 <link rel=stylesheet href="${ path }/resources/css/boardCss/boardCss.css"/>
 <!-- ------- -->
 
@@ -70,7 +71,9 @@
 				</c:forEach>
 			</c:if>
 		</table>
-		<br><br>
+		
+		<br><br><br><br>
+		
 		<div id="pageBar" align="center">
 			<!-- 맨 처음으로 -->
 			<button onclick="location.href='${ path }/board/list?page=1'">&lt;&lt;</button>

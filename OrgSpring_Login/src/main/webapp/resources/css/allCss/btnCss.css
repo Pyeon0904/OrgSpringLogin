@@ -41,7 +41,7 @@
         /* ---------------------------------------------- */
 
         /* (login)로그인 / 회원가입 버튼-------------------------- */
-        .btnLogin, .btnEnroll{
+        .btnLogin, .btnEnroll {
             margin-top: 15px;
             height: 30px;
             width: 170px;
@@ -51,9 +51,19 @@
         }
 
 
-        .btnEnroll:hover, .btnLogin:hover, .btnFind:hover{
+        .btnEnroll:hover, .btnLogin:hover, .btnFind:hover, .logoutBtn:hover, .btn_YS:hover, #checkDuplicate:hover {
             background-color:rgb(246, 189, 102);
             color: white;
         }
         /*-----------------------------------------------*/
+        
+        /* 게시판 update(수정 / 목록으로) / 로그아웃 / 중복검사 버튼 */
+        .update-btn, .logoutBtn, .btn_YS, #checkDuplicate {
+        	border-radius:10px;
+        	margin-right:20px;
+        	background-color: transparent;
+        	cursor:pointer;
+        }
+        
+        
         

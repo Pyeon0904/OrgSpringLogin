@@ -1,7 +1,9 @@
 package com.org.orgLogin.member.model.service;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Transactional;
 
 import com.org.orgLogin.member.model.mapper.MemberMapper;
 import com.org.orgLogin.member.model.vo.Member;
@@ -75,7 +77,7 @@ public class MemberServiceImpl implements MemberService {
 	
 //[ 회원가입 메소드 로직1 ]
 	@Override
-	@Transactional
+	//@Transactional
 	public int save(Member member) {
 		int result = 0;
 		

@@ -93,9 +93,10 @@
 		
 		<!-- 로그인 O -->
 		<c:if test="${ loginMember != null }">
+			<br><br>
 			<div class="logoutForm">
-			${ loginMember.name }님, 안녕하세요.
-			<button onclick="location.replace('${path}/logout')">로그아웃</button>
+				${ loginMember.name }님, 안녕하세요.
+				<button class="logoutBtn" onclick="location.replace('${path}/logout')">로그아웃</button>
 			</div>
 		</c:if>
 		

@@ -1,4 +1,4 @@
-package com.kh.mvc.kakaoLogin.controller;
+package com.org.orgLogin.kakaoLogin.controller;
 
 import org.springframework.stereotype.Controller;
 

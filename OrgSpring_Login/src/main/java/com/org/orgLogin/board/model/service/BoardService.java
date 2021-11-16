@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.mvc.board.model.vo.Board;
-import com.kh.mvc.common.util.PageInfo;
+import com.org.orgLogin.board.model.vo.Board;
+import com.org.orgLogin.common.util.PageInfo;
 
 public interface BoardService {
 
